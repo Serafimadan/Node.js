@@ -9,4 +9,4 @@ function padLeft(val, num, str) {
 }
 
 // YOUR CODE GOES HERE
-exports.padLeft = padLeft;
+module.exports = padLeft;
