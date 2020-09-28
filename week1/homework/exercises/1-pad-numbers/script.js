@@ -19,3 +19,9 @@
 let numbers = [ "12", "846", "2", "1236" ];
 
 // YOUR CODE GOES HERE
+const math = require( "./padLeft.js" );
+
+console.log(math.padLeft(numbers[0], 5, '_'));
+console.log(math.padLeft(numbers[1], 5, '_'));
+console.log(math.padLeft(numbers[2], 5, '_'));
+console.log(math.padLeft(numbers[3], 5, '_'));
