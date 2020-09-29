@@ -21,4 +21,5 @@ let numbers = [ "12", "846", "2", "1236" ];
 // YOUR CODE GOES HERE
 const padLeft = require( "./padLeft.js" );
 
-console.log(numbers.map(element => padLeft(element, 5, '_')));
+console.log(numbers.map((element) => padLeft(element, 5, '_')));
+console.log(numbers.map((element) => padLeft(element, 5, ' ')));

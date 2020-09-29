@@ -13,4 +13,4 @@ let numbers = [ "12", "846", "2", "1236" ];
 // YOUR CODE GOES HERE
 const leftPad = require( 'left-pad' );
 
-console.log(numbers.map(element => leftPad(element, 5, ' ')));
+console.log(numbers.map((element) => leftPad(element, 8, ' ')));
