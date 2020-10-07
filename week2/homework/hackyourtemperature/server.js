@@ -20,7 +20,6 @@ app.get('/', function(req, res) {
 // the Backend, creating a city name from the request
 app.post('/weather', function(req, res) {
   const cityName = req.body.cityName;
-  res.writeHead(200, "OK", {'Content-Type': 'application/json'});
   res.end(cityName); 
   console.log(cityName);
 });
