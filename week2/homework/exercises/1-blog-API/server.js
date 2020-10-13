@@ -15,7 +15,6 @@ app.use(express.json());
 app.post('/blogs', (req, res) => {
   let title = req.body.title;
   let content = req.body.content;
-  res.writeHead(200, "OK", {'Content-Type': 'application/json'});
   fs.writeFileSync(title, content);
   res.end('ok')
 })
@@ -25,7 +24,6 @@ app.put('/posts/:title', (req, res) => {
   let title = req.params.title;
   let content = req.body.content;
   if (fs.existsSync(title)) {
-    res.writeHead(200, "OK", {'Content-Type': 'application/json'});
     fs.writeFileSync(title, content);
     res.end('ok')
   }
@@ -63,17 +61,29 @@ app.get('/blogs/:title', (req, res) => {
 app.get('/blogs', (req, res) => {
   // how to get the file names of all files in a folder??
   const folder = './blogs';
-  fs.readdir(folder, { withFileTypes: true }, (err, files) => {
-    let title = req.params.title;
-    if (fs.existsSync(folder)) { 
-      files = files.map(file => {
-        return file;
-      }); 
-      res.end(JSON.stringify(files));
+  // fs.readdir(folder, { withFileTypes: true }, (err, files) => {
+  //   let title = req.params.title;
+  //   if (fs.existsSync(folder)) { 
+  //     files = files.map(file => {
+  //       return file;
+  //     }); 
+  //     res.end(JSON.stringify(files));
+  //   } else {
+  //     res.status(400).end(err);
+  //   }
+  // })
+  if ( ! fs.existsSync(folder)) { 
+    res.end([]); // send back an empty array
+    return res;
+}
+fs.readdir(folder, { withFileTypes: true }, (err, files) => {
+    if ( err ) {
+      console.error(err);
+      res.status(500).end('Something went wrong');
     } else {
-      res.status(400).end(err);
+      let filenames = files.map(file => file.title); 
+      res.end(JSON.stringify(files));
     }
-  })
 })
-
+})
 app.listen(3000)
